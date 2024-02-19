@@ -1,0 +1,12 @@
+.polka {
+    background-image:
+        radial-gradient(rgb(214, 71, 169) 10%, transparent 10%),
+        radial-gradient(rgb(199, 77, 160) 10%, transparent 10%);
+    background-position: 0px 0px, 4px 4px;
+    background-size: 8px 8px;
+    background-color: rgb(255, 255, 255);
+}
+
+.herotext {
+    color: #E93D82
+}

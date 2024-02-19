@@ -1,0 +1,59 @@
+/* Reset default styles */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Style the arrow icon */
+  select::after {
+    content: '\25BC'; /* Unicode character for a downward-pointing triangle */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  /* Style on hover and focus */
+  select:hover,
+  select:focus {
+    border-color: #E93D82; /* Change the border color on hover/focus */
+  }
+  
+  /* Style when the dropdown is open */
+  select:active,
+  select:checked {
+    background-color: #f9f9f9;
+  }
+
+  input {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+  }
+
+  input:hover,
+  input:focus {
+    border: 1px solid #E93D82; /* Change the border color on hover/focus */
+  }
+
+  input::placeholder {
+    opacity: 0.6;
+    color: rgb(122, 120, 120);
+  }
+  
