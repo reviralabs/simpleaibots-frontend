@@ -1,19 +1,31 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Flex, Text, Box } from "@radix-ui/themes";
-import { get } from "../../utils/httputils.ts";
+import { VscError } from "react-icons/vsc";
+import { getWeddingSpeech } from "./weddingspeechdata.ts";
 import Footer from "../Common/Footer.tsx";
 
 const WeddingSpeechBot = () => {
   const { speechId } = useParams();
 
   const [generatedSpeech, setGeneratedSpeech] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("Something went wrong");
 
   useEffect(() => {
     async function fetch() {
-      const response = await get("http://localhost:8787/text/" + speechId);
-      if (response) {
-        setGeneratedSpeech(response.content);
+      if (speechId) {
+        const response = await getWeddingSpeech(speechId);
+
+        if (response.content) {
+          setGeneratedSpeech(response.content);
+        } else {
+          setErrorMessage(response.statusText);
+          setIsError(true);
+        }
+      } else {
+        setErrorMessage("Not Found!");
+        setIsError(true);
       }
     }
 
@@ -34,11 +46,26 @@ const WeddingSpeechBot = () => {
           </Text>
         </Flex>
         <Flex
+          m="3"
+          direction="column"
+          justify="center"
+          align="center"
+          style={{ display: isError ? "flex" : "none" }}
+        >
+          <VscError style={{ width: "10vw", height: "10vh" }} />
+          <Text mt="5" size="5">
+            {errorMessage}
+          </Text>
+        </Flex>
+        <Flex
           m="7"
           direction="column"
           justify="center"
           align="center"
-          style={{ border: "1px solid #5cd4dd" }}
+          style={{
+            border: "1px solid #5cd4dd",
+            display: isError ? "none" : "flex",
+          }}
         >
           <Text m="4" size="5">
             {generatedSpeech}
