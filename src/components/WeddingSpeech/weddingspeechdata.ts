@@ -2,7 +2,7 @@ import { post, get } from "../../utils/httputils.ts";
 import { WeddingSpeechRequest, WeddingSpeechResponse } from "./types.ts";
 import axios, { AxiosResponse } from "axios";
 
-const WeddingSpeechUrl = "http://localhost:8787/text";
+const WeddingSpeechUrl = import.meta.env.VITE_WEDDING_SPEECH_URL + "/text";
 
 const generateWeddingSpeech = async (
   weddingSpeechInput: WeddingSpeechRequest
