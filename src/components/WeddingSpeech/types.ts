@@ -37,6 +37,6 @@ export type WeddingSpeechRequest = {
 export type WeddingSpeechResponse = {
   id: string;
   content: string;
-  statusCode: string;
+  statusCode: number;
   statusText: string;
 };
