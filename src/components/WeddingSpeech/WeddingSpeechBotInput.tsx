@@ -4,10 +4,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
-import { generateWeddingSpeech } from "./weddingspeechdata.ts";
-import { WeddingSpeechFormInput, WeddingSpeechRequest } from "./types.tsx";
+import { generateWeddingSpeech } from "./WeddingSpeechData.ts";
+import { WeddingSpeechFormInput, WeddingSpeechRequest } from "./types.ts";
 
-const WeddingSpeechBot = () => {
+const WeddingSpeechBotInput = () => {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -338,4 +338,4 @@ const WeddingSpeechBot = () => {
   );
 };
 
-export default WeddingSpeechBot;
+export default WeddingSpeechBotInput;

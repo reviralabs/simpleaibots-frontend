@@ -1,10 +1,11 @@
 import React from "react";
-import { Text, Strong, Card, Box } from "@radix-ui/themes";
+import { Text, Strong, Card, Box, Flex, Badge } from "@radix-ui/themes";
 
 interface TileType {
   title: string;
   description: string;
   route: string;
+  cost: string;
 }
 
 const Tile: React.FC<{ tile: TileType }> = ({ tile }) => {
@@ -16,11 +17,16 @@ const Tile: React.FC<{ tile: TileType }> = ({ tile }) => {
       m="3"
     >
       <a href={tile.route}>
-        <Box m="2">
-          <Text as="div" size="3" weight="bold" color="crimson">
-            <Strong>{tile.title}</Strong>
-          </Text>
-        </Box>
+        <Flex justify="between">
+          <Box m="2">
+            <Text as="div" size="3" weight="bold" color="crimson">
+              <Strong>{tile.title}</Strong>
+            </Text>
+          </Box>
+          <Badge m="2" size="1" color="green">
+            {tile.cost}
+          </Badge>
+        </Flex>
         <Box m="2">
           <Text as="div" color="gray" size="3">
             {tile.description}

@@ -23,6 +23,10 @@ body {
   justify-content: center;
 }
 
+.display-linebreak {
+  white-space: pre-line;
+}
+
 
 .rotate-center {
   -webkit-animation: rotate-center 2s linear infinite both;

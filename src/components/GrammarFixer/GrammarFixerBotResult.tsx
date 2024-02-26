@@ -2,24 +2,24 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Flex, Text, Box } from "@radix-ui/themes";
 import { VscError } from "react-icons/vsc";
-import { getWeddingSpeech } from "./WeddingSpeechData.ts";
+import { getGrammarFixerContent } from "./GrammarFixerData.ts";
 import Footer from "../Common/Footer.tsx";
 import { formatResultText } from "../../utils/textutils.ts";
 
-const WeddingSpeechBotResult = () => {
-  const { speechId } = useParams();
+const EssayWriterBotResult = () => {
+  const { grammarFixerContentId } = useParams();
 
-  const [generatedSpeech, setGeneratedSpeech] = useState("");
+  const [generatedContent, setGeneratedContent] = useState("");
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
 
   useEffect(() => {
     async function fetch() {
-      if (speechId) {
-        const response = await getWeddingSpeech(speechId);
+      if (grammarFixerContentId) {
+        const response = await getGrammarFixerContent(grammarFixerContentId);
 
         if (response.content) {
-          setGeneratedSpeech(response.content);
+          setGeneratedContent(response.content);
         } else {
           setErrorMessage(response.statusText);
           setIsError(true);
@@ -43,7 +43,7 @@ const WeddingSpeechBotResult = () => {
           justify="center"
         >
           <Text size="7" align="center">
-            Free AI Wedding Speech Generator
+            Free AI Grammar Fixer
           </Text>
         </Flex>
         <Flex
@@ -68,11 +68,11 @@ const WeddingSpeechBotResult = () => {
             display: isError ? "none" : "flex",
           }}
         >
-          <Text m="4" size="5">
-            {formatResultText(generatedSpeech)}
+          <Text m="4" size="5" className="display-linebreak">
+            {formatResultText(generatedContent)}
           </Text>
         </Flex>
-        {generatedSpeech && (
+        {generatedContent && (
           <Flex m="3" direction="column" justify="center" align="center">
             <Text m="4" size="3">
               You can bookmark this. This speech will be stored in our server
@@ -88,4 +88,4 @@ const WeddingSpeechBotResult = () => {
   );
 };
 
-export default WeddingSpeechBotResult;
+export default EssayWriterBotResult;

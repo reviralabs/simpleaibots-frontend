@@ -2,24 +2,24 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Flex, Text, Box } from "@radix-ui/themes";
 import { VscError } from "react-icons/vsc";
-import { getWeddingSpeech } from "./WeddingSpeechData.ts";
+import { getEssay } from "./EssayWriterData.ts";
 import Footer from "../Common/Footer.tsx";
 import { formatResultText } from "../../utils/textutils.ts";
 
-const WeddingSpeechBotResult = () => {
-  const { speechId } = useParams();
+const EssayWriterBotResult = () => {
+  const { essayId } = useParams();
 
-  const [generatedSpeech, setGeneratedSpeech] = useState("");
+  const [generatedEssay, setGeneratedEssay] = useState("");
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
 
   useEffect(() => {
     async function fetch() {
-      if (speechId) {
-        const response = await getWeddingSpeech(speechId);
+      if (essayId) {
+        const response = await getEssay(essayId);
 
         if (response.content) {
-          setGeneratedSpeech(response.content);
+          setGeneratedEssay(response.content);
         } else {
           setErrorMessage(response.statusText);
           setIsError(true);
@@ -43,7 +43,7 @@ const WeddingSpeechBotResult = () => {
           justify="center"
         >
           <Text size="7" align="center">
-            Free AI Wedding Speech Generator
+            Free AI Essay Writer
           </Text>
         </Flex>
         <Flex
@@ -69,10 +69,10 @@ const WeddingSpeechBotResult = () => {
           }}
         >
           <Text m="4" size="5">
-            {formatResultText(generatedSpeech)}
+            {formatResultText(generatedEssay)}
           </Text>
         </Flex>
-        {generatedSpeech && (
+        {generatedEssay && (
           <Flex m="3" direction="column" justify="center" align="center">
             <Text m="4" size="3">
               You can bookmark this. This speech will be stored in our server
@@ -88,4 +88,4 @@ const WeddingSpeechBotResult = () => {
   );
 };
 
-export default WeddingSpeechBotResult;
+export default EssayWriterBotResult;

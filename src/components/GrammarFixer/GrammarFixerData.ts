@@ -1,16 +1,16 @@
 import { post, get } from "../../utils/httputils.ts";
-import { WeddingSpeechRequest, WeddingSpeechResponse } from "./types.ts";
+import { GrammarFixerRequest, GrammarFixerResponse } from "./types.ts";
 import axios, { AxiosResponse } from "axios";
 
-const WEDDING_SPEECH_URL = import.meta.env.VITE_WEDDING_SPEECH_URL + "/text";
+const GRAMMAR_FIXER_URL = import.meta.env.VITE_GRAMMAR_FIXER_URL + "/text";
 
-const generateWeddingSpeech = async (
-  weddingSpeechInput: WeddingSpeechRequest
-): Promise<WeddingSpeechResponse> => {
+const generateGrammarFixerContent = async (
+  grammarFixerRequest: GrammarFixerRequest
+): Promise<GrammarFixerResponse> => {
   try {
     const response: AxiosResponse = await post(
-      WEDDING_SPEECH_URL,
-      weddingSpeechInput
+      GRAMMAR_FIXER_URL,
+      grammarFixerRequest
     );
     if (response && response.status && response.status == 200) {
       return {
@@ -36,9 +36,11 @@ const generateWeddingSpeech = async (
   }
 };
 
-const getWeddingSpeech = async (id: string): Promise<WeddingSpeechResponse> => {
+const getGrammarFixerContent = async (
+  id: string
+): Promise<GrammarFixerResponse> => {
   try {
-    const response: AxiosResponse = await get(WEDDING_SPEECH_URL + "/" + id);
+    const response: AxiosResponse = await get(GRAMMAR_FIXER_URL + "/" + id);
 
     if (response && response.status && response.status == 200) {
       return {
@@ -73,4 +75,4 @@ const genericErrorRepsonse = () => {
   };
 };
 
-export { generateWeddingSpeech, getWeddingSpeech };
+export { generateGrammarFixerContent, getGrammarFixerContent };

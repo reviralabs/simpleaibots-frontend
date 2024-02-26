@@ -1,16 +1,16 @@
 import { post, get } from "../../utils/httputils.ts";
-import { WeddingSpeechRequest, WeddingSpeechResponse } from "./types.ts";
+import { EssayWriterRequest, EssayWriterResponse } from "./types.ts";
 import axios, { AxiosResponse } from "axios";
 
-const WEDDING_SPEECH_URL = import.meta.env.VITE_WEDDING_SPEECH_URL + "/text";
+const ESSAY_WRITER_URL = import.meta.env.VITE_ESSAY_WRITER_URL + "/text";
 
-const generateWeddingSpeech = async (
-  weddingSpeechInput: WeddingSpeechRequest
-): Promise<WeddingSpeechResponse> => {
+const generateEssay = async (
+  essayWriterInput: EssayWriterRequest
+): Promise<EssayWriterResponse> => {
   try {
     const response: AxiosResponse = await post(
-      WEDDING_SPEECH_URL,
-      weddingSpeechInput
+      ESSAY_WRITER_URL,
+      essayWriterInput
     );
     if (response && response.status && response.status == 200) {
       return {
@@ -36,9 +36,9 @@ const generateWeddingSpeech = async (
   }
 };
 
-const getWeddingSpeech = async (id: string): Promise<WeddingSpeechResponse> => {
+const getEssay = async (id: string): Promise<EssayWriterResponse> => {
   try {
-    const response: AxiosResponse = await get(WEDDING_SPEECH_URL + "/" + id);
+    const response: AxiosResponse = await get(ESSAY_WRITER_URL + "/" + id);
 
     if (response && response.status && response.status == 200) {
       return {
@@ -73,4 +73,4 @@ const genericErrorRepsonse = () => {
   };
 };
 
-export { generateWeddingSpeech, getWeddingSpeech };
+export { generateEssay, getEssay };
