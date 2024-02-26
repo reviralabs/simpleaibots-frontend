@@ -38,11 +38,6 @@ const EssayWriterBotInput = () => {
     reset();
   };
 
-  const onFormSubmitError = (errors: EssayWriterRequest, e: string) => {
-    console.log(errors);
-    console.log(e);
-  };
-
   return (
     <>
       <Flex p="5" className="polka" style={{ width: "100vw" }} justify="center">
@@ -84,7 +79,7 @@ const EssayWriterBotInput = () => {
         justify="center"
         style={{ display: isProcessing || isError ? "none" : "flex" }}
       >
-        <form onSubmit={handleSubmit(onFormSubmit, onFormSubmitError)}>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
             <Text size="7"> What is the title of the essay? </Text>
             <input

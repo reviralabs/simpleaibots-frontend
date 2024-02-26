@@ -7,7 +7,12 @@ const Header = () => {
 
   return (
     <Flex justify="between">
-      <Flex m="3" align="center">
+      <Flex
+        m="3"
+        align="center"
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate("/")}
+      >
         <img
           src={cutebot}
           alt="SimpleAIBots"
