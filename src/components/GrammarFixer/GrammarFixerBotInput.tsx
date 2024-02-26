@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Flex, Text, Button } from "@radix-ui/themes";
+import { Flex, Text, Button, Box } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
 import { generateGrammarFixerContent } from "./GrammarFixerData.ts";
 import { GrammarFixerRequest } from "./types.ts";
+import Header from "../Common/Header";
 
 const GrammarFixerBotInput = () => {
   const navigate = useNavigate();
@@ -34,11 +35,14 @@ const GrammarFixerBotInput = () => {
 
   return (
     <>
-      <Flex p="5" className="polka" style={{ width: "100vw" }} justify="center">
-        <Text size="7" align="center">
-          Free AI Grammar Fixer
-        </Text>
-      </Flex>
+      <Box className="polka">
+        <Header />
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Text size="7" align="center">
+            Free AI Grammar Fixer
+          </Text>
+        </Flex>
+      </Box>
       <Flex
         m="3"
         direction="column"
