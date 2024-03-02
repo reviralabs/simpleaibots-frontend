@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex justify="between">
+    <Flex justify="center">
       <Flex
         m="3"
         align="center"

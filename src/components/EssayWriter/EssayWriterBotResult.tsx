@@ -72,14 +72,6 @@ const EssayWriterBotResult = () => {
             {formatResultText(generatedEssay)}
           </Text>
         </Flex>
-        {generatedEssay && (
-          <Flex m="3" direction="column" justify="center" align="center">
-            <Text m="4" size="3">
-              You can bookmark this. This speech will be stored in our server
-              for 7 days.
-            </Text>
-          </Flex>
-        )}
       </Box>
       <Flex justify="center" align="center" className="footer">
         <Footer />

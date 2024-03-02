@@ -4,27 +4,34 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
-import Header from "../Common/Header";
-import { generateGrammarFixerContent } from "./GrammarFixerData.ts";
-import { GrammarFixerRequest } from "./types.ts";
+import Header from "../Common/Header.tsx";
+import { generateCoverLetter } from "./CoverLetterGeneratorData.ts";
+import { CoverLetterGeneratorRequest } from "./types.ts";
 
-const GrammarFixerBotInput = () => {
+type formErrors = {
+  [key: string]: string;
+};
+
+const CoverLetterGeneratorBotInput = () => {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
+  const [formErrors, setFormErrors] = useState<formErrors>({});
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
 
-  const { register, handleSubmit, reset } = useForm<GrammarFixerRequest>();
+  const { register, handleSubmit, reset } =
+    useForm<CoverLetterGeneratorRequest>();
 
-  const onFormSubmit = async (data: GrammarFixerRequest) => {
+  const onFormSubmit = async (data: CoverLetterGeneratorRequest) => {
     setIsProcessing(true);
+    setFormErrors({});
 
-    const response = await generateGrammarFixerContent(data);
+    const response = await generateCoverLetter(data);
 
     setIsProcessing(false);
     if (response.id) {
-      navigate("/grammar-fixer/" + response.id);
+      navigate("/cover-letter-generator/" + response.id);
     } else {
       setErrorMessage(response.statusText);
       setIsError(true);
@@ -39,7 +46,7 @@ const GrammarFixerBotInput = () => {
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
           <Text size="7" align="center">
-            Free AI Grammar Fixer
+            Free AI Cover Letter Generator
           </Text>
         </Flex>
       </Box>
@@ -79,12 +86,47 @@ const GrammarFixerBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Add your content to fix grammar </Text>
+            <Text size="7"> Job Title </Text>
+            <input
+              type="text"
+              required
+              placeholder="Light Bulb Changer"
+              {...register("jobTitle", {
+                validate: (val) => {
+                  if (val.length > 40) {
+                    setFormErrors((prevPersonInfo) => ({
+                      ...prevPersonInfo,
+                      jobTitle: "Number of characters must not exceed 40",
+                    }));
+                    return false;
+                  }
+                  return true;
+                },
+              })}
+              style={{ width: "80vw", height: "6vh" }}
+            />
+            {formErrors.jobTitle && (
+              <Text color="red" size="3">
+                {formErrors.jobTitle}
+              </Text>
+            )}
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
+            <Text size="5">Job Description</Text>
             <textarea
               required
               placeholder="Type or paste your content here"
-              {...register("text")}
-              style={{ width: "80vw", height: "50vh" }}
+              {...register("jobDescription")}
+              style={{ width: "80vw", height: "20vh" }}
+            />
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
+            <Text size="7"> Resume </Text>
+            <textarea
+              required
+              placeholder="Type or paste your content here"
+              {...register("resume")}
+              style={{ width: "80vw", height: "20vh" }}
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
@@ -96,4 +138,4 @@ const GrammarFixerBotInput = () => {
   );
 };
 
-export default GrammarFixerBotInput;
+export default CoverLetterGeneratorBotInput;

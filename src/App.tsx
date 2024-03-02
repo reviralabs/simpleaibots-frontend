@@ -6,6 +6,14 @@ import EssayWriterBotInput from "./components/EssayWriter/EssayWriterBotInput";
 import EssayWriterBotResult from "./components/EssayWriter/EssayWriterBotResult";
 import GrammarFixerBotInput from "./components/GrammarFixer/GrammarFixerBotInput";
 import GrammarFixerBotResult from "./components/GrammarFixer/GrammarFixerBotResult";
+import ContentShortenerBotInput from "./components/ContentShortener/ContentShortenerBotInput";
+import ContentShortenerBotResult from "./components/ContentShortener/ContentShortenerBotResult";
+import ArticleRewriterBotInput from "./components/ArticleRewriter/ArticleRewriterBotInput";
+import ArticleRewriterBotResult from "./components/ArticleRewriter/ArticleRewriterBotResult";
+import EmailWriterBotInput from "./components/EmailWriter/EmailWriterBotInput";
+import EmailWriterBotResult from "./components/EmailWriter/EmailWriterBotResult";
+import CoverLetterGeneratorBotInput from "./components/CoverLetterGenerator/CoverLetterGeneratorBotInput";
+import CoverLetterGeneratorBotResult from "./components/CoverLetterGenerator/CoverLetterGeneratorBotResult";
 
 const App = () => {
   return (
@@ -26,6 +34,33 @@ const App = () => {
       <Route
         path="/grammar-fixer/:grammarFixerContentId"
         element={<GrammarFixerBotResult />}
+      />
+
+      <Route path="/content-shortener" element={<ContentShortenerBotInput />} />
+      <Route
+        path="/content-shortener/:rewrittenArticleId"
+        element={<ContentShortenerBotResult />}
+      />
+
+      <Route path="/article-rewriter" element={<ArticleRewriterBotInput />} />
+      <Route
+        path="/article-rewriter/:rewrittenArticleId"
+        element={<ArticleRewriterBotResult />}
+      />
+
+      <Route path="/email-writer" element={<EmailWriterBotInput />} />
+      <Route
+        path="/email-writer/:emailContentId"
+        element={<EmailWriterBotResult />}
+      />
+
+      <Route
+        path="/cover-letter-generator"
+        element={<CoverLetterGeneratorBotInput />}
+      />
+      <Route
+        path="/cover-letter-generator/:coverLetterId"
+        element={<CoverLetterGeneratorBotResult />}
       />
     </Routes>
   );

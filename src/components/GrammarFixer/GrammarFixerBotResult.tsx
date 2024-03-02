@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Flex, Text, Box } from "@radix-ui/themes";
 import { VscError } from "react-icons/vsc";
-import { getGrammarFixerContent } from "./GrammarFixerData.ts";
 import Footer from "../Common/Footer.tsx";
+import Header from "../Common/Header";
+import { getGrammarFixerContent } from "./GrammarFixerData.ts";
 import { formatResultText } from "../../utils/textutils.ts";
 
 const EssayWriterBotResult = () => {
@@ -36,16 +37,14 @@ const EssayWriterBotResult = () => {
   return (
     <>
       <Box>
-        <Flex
-          p="5"
-          className="polka"
-          style={{ width: "100vw" }}
-          justify="center"
-        >
-          <Text size="7" align="center">
-            Free AI Grammar Fixer
-          </Text>
-        </Flex>
+        <Box className="polka">
+          <Header />
+          <Flex p="1" style={{ width: "100vw" }} justify="center">
+            <Text size="7" align="center">
+              Free AI Grammar Fixer
+            </Text>
+          </Flex>
+        </Box>
         <Flex
           m="3"
           direction="column"
@@ -72,14 +71,6 @@ const EssayWriterBotResult = () => {
             {formatResultText(generatedContent)}
           </Text>
         </Flex>
-        {generatedContent && (
-          <Flex m="3" direction="column" justify="center" align="center">
-            <Text m="4" size="3">
-              You can bookmark this. This speech will be stored in our server
-              for 7 days.
-            </Text>
-          </Flex>
-        )}
       </Box>
       <Flex justify="center" align="center" className="footer">
         <Footer />

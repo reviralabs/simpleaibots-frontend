@@ -31,9 +31,9 @@ const Tiles = () => {
           cost: "Free",
         },
         {
-          title: "Article Re-writter",
+          title: "Article Re-writer",
           description: "Re-write any article using AI",
-          route: "/article-rewritter",
+          route: "/article-rewriter",
           cost: "Free",
         },
         {
@@ -52,6 +52,12 @@ const Tiles = () => {
           title: "Essay Writer",
           description: "Write an essay using AI",
           route: "/essay-writer",
+          cost: "Free",
+        },
+        {
+          title: "E-mail Writer",
+          description: "Write emails using AI",
+          route: "/email-writer",
           cost: "Free",
         },
       ]);

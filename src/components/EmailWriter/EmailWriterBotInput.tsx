@@ -4,27 +4,27 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
-import Header from "../Common/Header";
-import { generateGrammarFixerContent } from "./GrammarFixerData.ts";
-import { GrammarFixerRequest } from "./types.ts";
+import Header from "../Common/Header.tsx";
+import { generateEmailContent } from "./EmailWriterData.ts";
+import { EmailWriterRequest } from "./types.ts";
 
-const GrammarFixerBotInput = () => {
+const EmailWriterBotInput = () => {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
 
-  const { register, handleSubmit, reset } = useForm<GrammarFixerRequest>();
+  const { register, handleSubmit, reset } = useForm<EmailWriterRequest>();
 
-  const onFormSubmit = async (data: GrammarFixerRequest) => {
+  const onFormSubmit = async (data: EmailWriterRequest) => {
     setIsProcessing(true);
 
-    const response = await generateGrammarFixerContent(data);
+    const response = await generateEmailContent(data);
 
     setIsProcessing(false);
     if (response.id) {
-      navigate("/grammar-fixer/" + response.id);
+      navigate("/email-writer/" + response.id);
     } else {
       setErrorMessage(response.statusText);
       setIsError(true);
@@ -39,7 +39,7 @@ const GrammarFixerBotInput = () => {
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
           <Text size="7" align="center">
-            Free AI Grammar Fixer
+            Free AI Email Writer
           </Text>
         </Flex>
       </Box>
@@ -79,7 +79,11 @@ const GrammarFixerBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Add your content to fix grammar </Text>
+            <Text size="5">
+              {" "}
+              Add your draft to write email. Don't worry about grammar and
+              sentence correctness{" "}
+            </Text>
             <textarea
               required
               placeholder="Type or paste your content here"
@@ -96,4 +100,4 @@ const GrammarFixerBotInput = () => {
   );
 };
 
-export default GrammarFixerBotInput;
+export default EmailWriterBotInput;
