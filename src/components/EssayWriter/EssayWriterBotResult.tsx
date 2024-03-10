@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import { Flex, Text, Box } from "@radix-ui/themes";
 import { VscError } from "react-icons/vsc";
 import { getEssay } from "./EssayWriterData.ts";
-import Footer from "../Common/Footer.tsx";
+import Footer from "../Common/components/Footer.tsx";
 import { formatResultText } from "../../utils/textutils.ts";
 
 const EssayWriterBotResult = () => {

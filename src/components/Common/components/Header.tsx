@@ -1,6 +1,6 @@
 import { Flex, Text, Box, Strong } from "@radix-ui/themes";
 import { useNavigate } from "react-router-dom";
-import cutebot from "../../images/cutebot.png";
+import cutebot from "../../../images/cutebot.png";
 
 const Header = () => {
   const navigate = useNavigate();

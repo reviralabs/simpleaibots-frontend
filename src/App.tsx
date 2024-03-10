@@ -14,6 +14,15 @@ import EmailWriterBotInput from "./components/EmailWriter/EmailWriterBotInput";
 import EmailWriterBotResult from "./components/EmailWriter/EmailWriterBotResult";
 import CoverLetterGeneratorBotInput from "./components/CoverLetterGenerator/CoverLetterGeneratorBotInput";
 import CoverLetterGeneratorBotResult from "./components/CoverLetterGenerator/CoverLetterGeneratorBotResult";
+import ExcelFormulaGeneratorBotInput from "./components/ExcelFormulaGenerator/ExcelFormulaGeneratorBotInput";
+import ExcelFormulaGeneratorBotResult from "./components/ExcelFormulaGenerator/ExcelFormulaGeneratorBotResult";
+import LinkedinPostGeneratorInput from "./components/LinkedinPostGenerator/LinkedinPostGeneratorInput";
+import LinkedinPostGeneratorResult from "./components/LinkedinPostGenerator/LinkedinPostGeneratorResult";
+import YoutubeDescriptionGeneratorInput from "./components/YoutubeDescriptionGenerator/YoutubeDescriptionGeneratorInput";
+import YoutubeDescriptionGeneratorResult from "./components/YoutubeDescriptionGenerator/YoutubeDescriptionGeneratorResult";
+import PerformanceReviewGeneratorInput from "./components/PerformanceReviewGenerator/PerformanceReviewGeneratorInput";
+import PerformanceReviewGeneratorResult from "./components/PerformanceReviewGenerator/PerformanceReviewGeneratorResult";
+import Blog from "./components/Blog/Blog";
 
 const App = () => {
   return (
@@ -62,6 +71,44 @@ const App = () => {
         path="/cover-letter-generator/:coverLetterId"
         element={<CoverLetterGeneratorBotResult />}
       />
+
+      <Route
+        path="/excel-formula-generator"
+        element={<ExcelFormulaGeneratorBotInput />}
+      />
+      <Route
+        path="/excel-formula-generator/:excelFormulaId"
+        element={<ExcelFormulaGeneratorBotResult />}
+      />
+
+      <Route
+        path="/linkedin-post-generator"
+        element={<LinkedinPostGeneratorInput />}
+      />
+      <Route
+        path="/linkedin-post-generator/:linkedinPostId"
+        element={<LinkedinPostGeneratorResult />}
+      />
+
+      <Route
+        path="/youtube-description-generator"
+        element={<YoutubeDescriptionGeneratorInput />}
+      />
+      <Route
+        path="/youtube-description-generator/:youtubeDescriptionId"
+        element={<YoutubeDescriptionGeneratorResult />}
+      />
+
+      <Route
+        path="/performance-review-generator"
+        element={<PerformanceReviewGeneratorInput />}
+      />
+      <Route
+        path="/performance-review-generator/:performanceReviewId"
+        element={<PerformanceReviewGeneratorResult />}
+      />
+
+      <Route path="/blogs/:blogName" element={<Blog />} />
     </Routes>
   );
 };

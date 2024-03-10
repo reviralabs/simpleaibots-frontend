@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
-import { generateCoverLetter } from "./CoverLetterGeneratorData.ts";
-import { CoverLetterGeneratorRequest } from "./types.ts";
+import { generatePerformanceReview } from "./PerformanceReviewGeneratorData.ts";
+import { PerformanceReviewGeneratorRequest } from "./types.ts";
 
 type formErrors = {
   [key: string]: string;
 };
 
-const CoverLetterGeneratorBotInput = () => {
+const PerformanceReviewGeneratorInput = () => {
   const navigate = useNavigate();
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -21,17 +21,17 @@ const CoverLetterGeneratorBotInput = () => {
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
 
   const { register, handleSubmit, reset } =
-    useForm<CoverLetterGeneratorRequest>();
+    useForm<PerformanceReviewGeneratorRequest>();
 
-  const onFormSubmit = async (data: CoverLetterGeneratorRequest) => {
+  const onFormSubmit = async (data: PerformanceReviewGeneratorRequest) => {
     setIsProcessing(true);
     setFormErrors({});
 
-    const response = await generateCoverLetter(data);
+    const response = await generatePerformanceReview(data);
 
     setIsProcessing(false);
     if (response.id) {
-      navigate("/cover-letter-generator/" + response.id);
+      navigate("/performance-review-generator/" + response.id);
     } else {
       setErrorMessage(response.statusText);
       setIsError(true);
@@ -46,7 +46,7 @@ const CoverLetterGeneratorBotInput = () => {
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
           <Text size="7" align="center">
-            Free AI Cover Letter Generator
+            Free AI Performance Review Generator
           </Text>
         </Flex>
       </Box>
@@ -86,6 +86,32 @@ const CoverLetterGeneratorBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
+            <Text size="7"> Employee Name </Text>
+            <input
+              type="text"
+              required
+              placeholder="Phil Dunphy"
+              {...register("employeeName", {
+                validate: (val) => {
+                  if (val.length > 40) {
+                    setFormErrors((prevPersonInfo) => ({
+                      ...prevPersonInfo,
+                      jobTitle: "Number of characters must not exceed 40",
+                    }));
+                    return false;
+                  }
+                  return true;
+                },
+              })}
+              style={{ width: "80vw", height: "6vh" }}
+            />
+            {formErrors.employeeName && (
+              <Text color="red" size="3">
+                {formErrors.employeeName}
+              </Text>
+            )}
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
             <Text size="7"> Job Title </Text>
             <input
               type="text"
@@ -112,16 +138,7 @@ const CoverLetterGeneratorBotInput = () => {
             )}
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="5">Job Description</Text>
-            <textarea
-              required
-              placeholder="Type or paste your content here"
-              {...register("jobDescription")}
-              style={{ width: "80vw", height: "20vh" }}
-            />
-          </Flex>
-          <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Resume </Text>
+            <Text size="7">Key Achievements</Text>
             <textarea
               required
               placeholder="Type or paste your content here. &#10;
@@ -129,7 +146,7 @@ const CoverLetterGeneratorBotInput = () => {
               - 3 years of experience in Python &#10;
               - Have demonstrated history of leadership skills &#10;
               - Good team player"
-              {...register("resume")}
+              {...register("keyAchievements")}
               style={{ width: "80vw", height: "20vh" }}
             />
           </Flex>
@@ -142,4 +159,4 @@ const CoverLetterGeneratorBotInput = () => {
   );
 };
 
-export default CoverLetterGeneratorBotInput;
+export default PerformanceReviewGeneratorInput;

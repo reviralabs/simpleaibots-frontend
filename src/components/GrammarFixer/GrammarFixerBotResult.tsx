@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Flex, Text, Box } from "@radix-ui/themes";
 import { VscError } from "react-icons/vsc";
-import Footer from "../Common/Footer.tsx";
-import Header from "../Common/Header";
+import Footer from "../Common/components/Footer.tsx";
+import Header from "../Common/components/Header.tsx";
 import { getGrammarFixerContent } from "./GrammarFixerData.ts";
 import { formatResultText } from "../../utils/textutils.ts";
 
-const EssayWriterBotResult = () => {
+const GrammarFixerBotResult = () => {
   const { grammarFixerContentId } = useParams();
 
   const [generatedContent, setGeneratedContent] = useState("");
@@ -79,4 +79,4 @@ const EssayWriterBotResult = () => {
   );
 };
 
-export default EssayWriterBotResult;
+export default GrammarFixerBotResult;

@@ -2,24 +2,25 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { Flex, Text, Box } from "@radix-ui/themes";
 import { VscError } from "react-icons/vsc";
-import { getWeddingSpeech } from "./WeddingSpeechData.ts";
 import Footer from "../Common/components/Footer.tsx";
+import Header from "../Common/components/Header.tsx";
+import { getLinkedinPost } from "./LinkedinPostGeneratorData.ts";
 import { formatResultText } from "../../utils/textutils.ts";
 
-const WeddingSpeechBotResult = () => {
-  const { speechId } = useParams();
+const LinkedinPostGeneratorResult = () => {
+  const { linkedinPostId } = useParams();
 
-  const [generatedSpeech, setGeneratedSpeech] = useState("");
+  const [generatedContent, setGeneratedContent] = useState("");
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
 
   useEffect(() => {
     async function fetch() {
-      if (speechId) {
-        const response = await getWeddingSpeech(speechId);
+      if (linkedinPostId) {
+        const response = await getLinkedinPost(linkedinPostId);
 
         if (response.content) {
-          setGeneratedSpeech(response.content);
+          setGeneratedContent(response.content);
         } else {
           setErrorMessage(response.statusText);
           setIsError(true);
@@ -36,16 +37,14 @@ const WeddingSpeechBotResult = () => {
   return (
     <>
       <Box>
-        <Flex
-          p="5"
-          className="polka"
-          style={{ width: "100vw" }}
-          justify="center"
-        >
-          <Text size="7" align="center">
-            Free AI Wedding Speech Generator
-          </Text>
-        </Flex>
+        <Box className="polka">
+          <Header />
+          <Flex p="1" style={{ width: "100vw" }} justify="center">
+            <Text size="7" align="center">
+              Free AI Linkedin Post Generator
+            </Text>
+          </Flex>
+        </Box>
         <Flex
           m="3"
           direction="column"
@@ -68,8 +67,8 @@ const WeddingSpeechBotResult = () => {
             display: isError ? "none" : "flex",
           }}
         >
-          <Text m="4" size="5">
-            {formatResultText(generatedSpeech)}
+          <Text m="4" size="5" className="display-linebreak">
+            {formatResultText(generatedContent)}
           </Text>
         </Flex>
       </Box>
@@ -80,4 +79,4 @@ const WeddingSpeechBotResult = () => {
   );
 };
 
-export default WeddingSpeechBotResult;
+export default LinkedinPostGeneratorResult;

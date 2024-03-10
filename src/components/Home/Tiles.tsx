@@ -24,9 +24,15 @@ const Tiles = () => {
           cost: "Free",
         },
         {
+          title: "Excel Formula Generator",
+          description: "Generate excel formula using text description",
+          route: "/excel-formula-generator",
+          cost: "Free",
+        },
+        {
           title: "Cover Letter Generator",
           description:
-            "Generate your cover letter using AI based on the job profile",
+            "Generate cover letter using AI based on the job profile",
           route: "/cover-letter-generator",
           cost: "Free",
         },
@@ -58,6 +64,31 @@ const Tiles = () => {
           title: "E-mail Writer",
           description: "Write emails using AI",
           route: "/email-writer",
+          cost: "Free",
+        },
+        {
+          title: "Youtube Description Generator",
+          description:
+            "Generate SEO friendly description for your youtube videos with AI",
+          route: "/youtube-description-generator",
+          cost: "Free",
+        },
+        {
+          title: "Linkedin Post Generator",
+          description: "Generate Linkedin post for a specific topic with AI",
+          route: "/linkedin-post-generator",
+          cost: "Free",
+        },
+        {
+          title: "Real Estate Description Generator",
+          description: "Generate property description with AI",
+          route: "/realestate-description-generator",
+          cost: "Free",
+        },
+        {
+          title: "Performance Review Generator",
+          description: "Write clear and effective performace review with AI",
+          route: "/performance-review-generator",
           cost: "Free",
         },
       ]);

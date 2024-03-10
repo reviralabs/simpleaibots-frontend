@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
-import Header from "../Common/Header";
+import Header from "../Common/components/Header.tsx";
 import { generateShortContent } from "./ContentShortenerData.ts";
 import { ContentShortenerRequest } from "./types.ts";
 

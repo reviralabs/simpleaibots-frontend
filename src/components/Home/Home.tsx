@@ -1,7 +1,7 @@
 import { Flex, Box } from "@radix-ui/themes";
 import Hero from "./Hero";
 import Tiles from "./Tiles";
-import Header from "../Common/Header";
+import Header from "../Common/components/Header";
 
 const Home = () => {
   return (

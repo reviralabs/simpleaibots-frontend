@@ -12,23 +12,23 @@ const Tile: React.FC<{ tile: TileType }> = ({ tile }) => {
   return (
     <Card
       asChild
-      style={{ height: "20vh", border: "1px solid #5cd4dd" }}
+      style={{ height: "16vh", border: "1px solid #5cd4dd" }}
       onClick={() => console.log("heyyyy")}
-      m="3"
+      m="2"
     >
       <a href={tile.route}>
-        <Flex justify="between">
-          <Box m="2">
+        <Flex p="2" justify="between">
+          <Box>
             <Text as="div" size="3" weight="bold" color="crimson">
               <Strong>{tile.title}</Strong>
             </Text>
           </Box>
-          <Badge m="2" size="1" color="green">
+          <Badge size="1" color="green">
             {tile.cost}
           </Badge>
         </Flex>
-        <Box m="2">
-          <Text as="div" color="gray" size="3">
+        <Box p="2">
+          <Text as="div" color="gray" size="2">
             {tile.description}
           </Text>
         </Box>
