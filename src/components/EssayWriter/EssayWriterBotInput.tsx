@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Flex, Text, Button } from "@radix-ui/themes";
+import { Flex, Text, Button, Box, Heading } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
+import Header from "../Common/components/Header.tsx";
 import { generateEssay } from "./EssayWriterData.ts";
 import { EssayWriterRequest } from "./types.ts";
 
@@ -40,11 +41,19 @@ const EssayWriterBotInput = () => {
 
   return (
     <>
-      <Flex p="5" className="polka" style={{ width: "100vw" }} justify="center">
-        <Text size="7" align="center">
-          Free AI Essay Writer
-        </Text>
-      </Flex>
+      <Box className="polka">
+        <Header />
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h1" size="8">
+            Free AI Essay Writer
+          </Heading>
+        </Flex>
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h3" size="2">
+            Write essay on any topic with customizable emotions for free
+          </Heading>
+        </Flex>
+      </Box>
       <Flex
         m="3"
         direction="column"
@@ -81,7 +90,7 @@ const EssayWriterBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> What is the title of the essay? </Text>
+            <Text size="5"> What is the title of the essay? </Text>
             <input
               type="text"
               required
@@ -91,7 +100,7 @@ const EssayWriterBotInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Number of paragraphs </Text>
+            <Text size="5"> Number of paragraphs </Text>
             <input
               type="text"
               required
@@ -118,7 +127,7 @@ const EssayWriterBotInput = () => {
             )}
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Who is the author? </Text>
+            <Text size="5"> Who is the author? </Text>
             <select
               {...register("authorPersona")}
               style={{ width: "80vw", height: "8vh" }}
@@ -129,7 +138,7 @@ const EssayWriterBotInput = () => {
             </select>
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7">
+            <Text size="5">
               What emotion do you want to express in your speech?
             </Text>
             <select

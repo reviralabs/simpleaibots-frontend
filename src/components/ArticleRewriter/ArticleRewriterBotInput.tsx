@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Text, Button, Box } from "@radix-ui/themes";
+import { Flex, Text, Button, Box, Heading } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -38,9 +38,14 @@ const ArticleRewriterBotInput = () => {
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
-          <Text size="7" align="center">
+          <Heading as="h1" size="8">
             Free AI Article Rewriter
-          </Text>
+          </Heading>
+        </Flex>
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h3" size="2">
+            Precisely rewrite your articles with help of AI for free
+          </Heading>
         </Flex>
       </Box>
       <Flex
@@ -79,10 +84,10 @@ const ArticleRewriterBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Add your content to rewrite </Text>
+            <Text size="5"> Add your article below to rewrite </Text>
             <textarea
               required
-              placeholder="Type or paste your content here"
+              placeholder="Type or paste your article here to rewrite"
               {...register("text")}
               style={{ width: "80vw", height: "50vh" }}
             />

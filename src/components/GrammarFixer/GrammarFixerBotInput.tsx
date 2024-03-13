@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Text, Button, Box } from "@radix-ui/themes";
+import { Flex, Text, Button, Box, Heading } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -38,9 +38,14 @@ const GrammarFixerBotInput = () => {
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
-          <Text size="7" align="center">
+          <Heading as="h1" size="8">
             Free AI Grammar Fixer
-          </Text>
+          </Heading>
+        </Flex>
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h3" size="2">
+            Fix grammatical errors in your text with the help of AI for free
+          </Heading>
         </Flex>
       </Box>
       <Flex
@@ -79,7 +84,7 @@ const GrammarFixerBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Add your content to fix grammar </Text>
+            <Text size="5"> Add your content to fix grammar </Text>
             <textarea
               required
               placeholder="Type or paste your content here"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Text, Button, Box } from "@radix-ui/themes";
+import { Flex, Text, Button, Box, Heading } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -39,9 +39,14 @@ const ExcelFormulaGeneratorBotInput = () => {
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
-          <Text size="7" align="center">
+          <Heading as="h1" size="8">
             Free AI Excel Formula Generator
-          </Text>
+          </Heading>
+        </Flex>
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h3" size="2">
+            Generate spreadsheet formulas using text description
+          </Heading>
         </Flex>
       </Box>
       <Flex
@@ -80,13 +85,12 @@ const ExcelFormulaGeneratorBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7">
-              {" "}
-              Convert your text into spreadsheet formulas. Type your text here{" "}
+            <Text size="5">
+              Type your text here to convert it into a spreadsheet formula
             </Text>
             <textarea
               required
-              placeholder="Sum column A when column B is last day of this month and column C equals the word 'sales'"
+              placeholder="E.g. Sum column A when column B is last day of this month and column C equals the word 'sales'"
               {...register("text")}
               style={{ width: "80vw", height: "50vh" }}
             />

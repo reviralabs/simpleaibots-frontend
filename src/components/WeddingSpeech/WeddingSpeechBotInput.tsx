@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Flex, Text, Button } from "@radix-ui/themes";
+import { Flex, Text, Button, Box, Heading } from "@radix-ui/themes";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { VscError } from "react-icons/vsc";
+import Header from "../Common/components/Header.tsx";
 import { generateWeddingSpeech } from "./WeddingSpeechData.ts";
 import { WeddingSpeechFormInput, WeddingSpeechRequest } from "./types.ts";
 
@@ -80,11 +81,19 @@ const WeddingSpeechBotInput = () => {
 
   return (
     <>
-      <Flex p="5" className="polka" style={{ width: "100vw" }} justify="center">
-        <Text size="7" align="center">
-          Free AI Wedding Speech Generator
-        </Text>
-      </Flex>
+      <Box className="polka">
+        <Header />
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h1" size="8">
+            Free AI Wedding Speech generator
+          </Heading>
+        </Flex>
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h3" size="2">
+            Generate your custom wedding speech and impress everyone
+          </Heading>
+        </Flex>
+      </Box>
       <Flex
         m="3"
         direction="column"
@@ -121,7 +130,7 @@ const WeddingSpeechBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> What is your first Name? </Text>
+            <Text size="5"> What is your first Name? </Text>
             <input
               type="text"
               required
@@ -131,7 +140,7 @@ const WeddingSpeechBotInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Are you the Best Man</Text>
+            <Text size="5"> Are you the Best Man</Text>
             <select
               {...register("isBestMan")}
               style={{ width: "80vw", height: "8vh" }}
@@ -141,7 +150,7 @@ const WeddingSpeechBotInput = () => {
             </select>
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Are you Maid of Honor</Text>
+            <Text size="5"> Are you Maid of Honor</Text>
             <select
               {...register("isMaidOfHonor")}
               style={{ width: "80vw", height: "8vh" }}
@@ -151,7 +160,7 @@ const WeddingSpeechBotInput = () => {
             </select>
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> This speech is for </Text>
+            <Text size="5"> This speech is for </Text>
             <input
               type="text"
               required
@@ -162,7 +171,7 @@ const WeddingSpeechBotInput = () => {
           </Flex>
           {targetPersonValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7"> You are {targetPersonValue}'s </Text>
+              <Text size="5"> You are {targetPersonValue}'s </Text>
               <select
                 {...register("targetRelation")}
                 style={{ width: "80vw", height: "8vh" }}
@@ -183,7 +192,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7"> {targetPersonValue}'s pronoun </Text>
+              <Text size="5"> {targetPersonValue}'s pronoun </Text>
               <select
                 {...register("targetPersonPronoun")}
                 style={{ width: "80vw", height: "8vh" }}
@@ -196,7 +205,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">
+              <Text size="5">
                 {" "}
                 What are three characteristics that describe {
                   targetPersonValue
@@ -216,7 +225,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">Who is {targetPersonValue} marrying?</Text>
+              <Text size="5">Who is {targetPersonValue} marrying?</Text>
               <input
                 type="text"
                 required
@@ -228,7 +237,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonPartnerValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7"> {targetPersonPartnerValue}'s pronoun </Text>
+              <Text size="5"> {targetPersonPartnerValue}'s pronoun </Text>
               <select
                 {...register("targetPersonPartnerPronoun")}
                 style={{ width: "80vw", height: "8vh" }}
@@ -241,7 +250,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonPartnerValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">
+              <Text size="5">
                 What are three characteristics that describe{" "}
                 {targetPersonPartnerValue} ?
               </Text>
@@ -259,7 +268,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonPartnerValue && isParent(watch("targetRelation")) && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">
+              <Text size="5">
                 What it was like being {targetPersonValue}'s parent during their
                 childhood?
               </Text>
@@ -273,7 +282,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonPartnerValue && isSibling(watch("targetRelation")) && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">
+              <Text size="5">
                 What it was like growing up with {targetPersonValue} ?
               </Text>
               <input
@@ -286,7 +295,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonPartnerValue && isFriend(watch("targetRelation")) && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">
+              <Text size="5">
                 How did you meet {targetPersonValue}? What were your initial
                 thoughts about them?
               </Text>
@@ -300,7 +309,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonPartnerValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">
+              <Text size="5">
                 {" "}
                 Any specific memory that you would like to add to the speech?{" "}
               </Text>
@@ -314,7 +323,7 @@ const WeddingSpeechBotInput = () => {
           )}
           {targetPersonPartnerValue && (
             <Flex m="5" direction="column" justify="center">
-              <Text size="7">
+              <Text size="5">
                 What emotion do you want to express in your speech?
               </Text>
               <select

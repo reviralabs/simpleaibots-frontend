@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Text, Button, Box } from "@radix-ui/themes";
+import { Flex, Text, Button, Box, Heading } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -45,9 +45,15 @@ const CoverLetterGeneratorBotInput = () => {
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
-          <Text size="7" align="center">
+          <Heading as="h1" size="8">
             Free AI Cover Letter Generator
-          </Text>
+          </Heading>
+        </Flex>
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h3" size="2">
+            Generate cover letter to precisley match job description and your
+            resume
+          </Heading>
         </Flex>
       </Box>
       <Flex
@@ -86,7 +92,7 @@ const CoverLetterGeneratorBotInput = () => {
       >
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Job Title </Text>
+            <Text size="5"> Job Title </Text>
             <input
               type="text"
               required
@@ -115,16 +121,15 @@ const CoverLetterGeneratorBotInput = () => {
             <Text size="5">Job Description</Text>
             <textarea
               required
-              placeholder="Type or paste your content here"
+              placeholder="Paste job description for which you are applying"
               {...register("jobDescription")}
               style={{ width: "80vw", height: "20vh" }}
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Text size="7"> Resume </Text>
+            <Text size="5"> Resume </Text>
             <textarea
-              required
-              placeholder="Type or paste your content here. &#10;
+              placeholder="[optional] Type or paste your content here. &#10;
               Example: &#10;
               - 3 years of experience in Python &#10;
               - Have demonstrated history of leadership skills &#10;
