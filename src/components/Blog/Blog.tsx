@@ -6,6 +6,8 @@ import Footer from "../Common/components/Footer.tsx";
 import Header from "../Common/components/Header.tsx";
 import { formatResultText } from "../../utils/textutils.ts";
 import { getBlog } from "./BlogData.ts";
+import { Helmet } from "react-helmet";
+import { blogNames, blogDescriptions } from "./metadata.ts";
 
 const Blog = () => {
   const { blogName } = useParams();
@@ -36,6 +38,18 @@ const Blog = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content={blogName && blogDescriptions[blogName]}
+        />
+        <title>{blogName && blogNames[blogName]}</title>
+        <link
+          rel="canonical"
+          href="http://simpleaibots.com/content-shortener"
+        />
+      </Helmet>
       <Box>
         <Box className="polka">
           <Header />

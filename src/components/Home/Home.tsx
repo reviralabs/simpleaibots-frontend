@@ -2,10 +2,20 @@ import { Flex, Box } from "@radix-ui/themes";
 import Hero from "./Hero";
 import Tiles from "./Tiles";
 import Header from "../Common/components/Header";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="Simple AI tools to boost productivity"
+        />
+        <title>Simple AI Bots</title>
+        <link rel="canonical" href="http://simpleaibots.com" />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex

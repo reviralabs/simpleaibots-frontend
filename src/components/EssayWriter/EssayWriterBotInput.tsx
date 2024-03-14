@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { generateEssay } from "./EssayWriterData.ts";
 import { EssayWriterRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 type formErrors = {
   [key: string]: string;
@@ -41,6 +42,12 @@ const EssayWriterBotInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="description" content="AI-powered essay writer" />
+        <title>AI Essay Writer</title>
+        <link rel="canonical" href="http://simpleaibots.com/essay-writer" />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">

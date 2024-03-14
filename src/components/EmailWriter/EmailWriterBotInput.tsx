@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { generateEmailContent } from "./EmailWriterData.ts";
 import { EmailWriterRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 const EmailWriterBotInput = () => {
   const navigate = useNavigate();
@@ -35,6 +36,15 @@ const EmailWriterBotInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="AI-powered email writer to draft effective emails quicker"
+        />
+        <title>AI Email Writer</title>
+        <link rel="canonical" href="http://simpleaibots.com/email-writer" />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">

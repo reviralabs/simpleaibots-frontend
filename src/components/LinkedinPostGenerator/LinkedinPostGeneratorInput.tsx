@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { generateLinkedinPost } from "./LinkedinPostGeneratorData.ts";
 import { LinkedinPostGeneratorRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 const LinkedinPostGeneratorInput = () => {
   const navigate = useNavigate();
@@ -36,6 +37,15 @@ const LinkedinPostGeneratorInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="description" content="AI-powered linkedin post generator" />
+        <title>AI Linkedin Post Generator</title>
+        <link
+          rel="canonical"
+          href="http://simpleaibots.com/linkedin-post-generator"
+        />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">

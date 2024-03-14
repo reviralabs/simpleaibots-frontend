@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { generateYoutubeDescription } from "./YoutubeDescriptionGeneratorData.ts";
 import { YoutubeDescriptionGeneratorRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 const YoutubeDescriptionGeneratorInput = () => {
   const navigate = useNavigate();
@@ -36,6 +37,18 @@ const YoutubeDescriptionGeneratorInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="AI-powered youtube description generator"
+        />
+        <title>AI Youtube Description Generator</title>
+        <link
+          rel="canonical"
+          href="http://simpleaibots.com/youtube-description-generator"
+        />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">

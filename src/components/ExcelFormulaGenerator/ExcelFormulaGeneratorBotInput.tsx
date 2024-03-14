@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { excelFormulaGeneratorContent } from "./ExcelFormulaGeneratorData.ts";
 import { ExcelFormulaGeneratorRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 const ExcelFormulaGeneratorBotInput = () => {
   const navigate = useNavigate();
@@ -36,6 +37,15 @@ const ExcelFormulaGeneratorBotInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta name="description" content="AI-powered excel formula generator" />
+        <title>AI Excel Formula Generator</title>
+        <link
+          rel="canonical"
+          href="http://simpleaibots.com/excel-formula-generator"
+        />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">

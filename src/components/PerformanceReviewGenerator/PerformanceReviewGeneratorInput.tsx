@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { generatePerformanceReview } from "./PerformanceReviewGeneratorData.ts";
 import { PerformanceReviewGeneratorRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 type formErrors = {
   [key: string]: string;
@@ -42,6 +43,18 @@ const PerformanceReviewGeneratorInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="AI-powered performance review generator"
+        />
+        <title>AI Performance Review Generator</title>
+        <link
+          rel="canonical"
+          href="http://simpleaibots.com//=performance-review-generator"
+        />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">

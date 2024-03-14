@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { generateWeddingSpeech } from "./WeddingSpeechData.ts";
 import { WeddingSpeechFormInput, WeddingSpeechRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 const WeddingSpeechBotInput = () => {
   const navigate = useNavigate();
@@ -81,6 +82,18 @@ const WeddingSpeechBotInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="AI-powered wedding speech generator"
+        />
+        <title>AI Wedding Speech Generator</title>
+        <link
+          rel="canonical"
+          href="http://simpleaibots.com/wedding-speech-generator"
+        />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">

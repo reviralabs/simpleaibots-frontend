@@ -7,6 +7,7 @@ import { VscError } from "react-icons/vsc";
 import Header from "../Common/components/Header.tsx";
 import { generateShortContent } from "./ContentShortenerData.ts";
 import { ContentShortenerRequest } from "./types.ts";
+import { Helmet } from "react-helmet";
 
 const ContentShortenerBotInput = () => {
   const navigate = useNavigate();
@@ -35,6 +36,18 @@ const ContentShortenerBotInput = () => {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <meta
+          name="description"
+          content="AI-powered content shortener for concise information shorting"
+        />
+        <title>AI Content Shortener</title>
+        <link
+          rel="canonical"
+          href="http://simpleaibots.com/content-shortener"
+        />
+      </Helmet>
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
