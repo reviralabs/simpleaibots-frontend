@@ -47,7 +47,7 @@ const App = () => {
 
       <Route path="/content-shortener" element={<ContentShortenerBotInput />} />
       <Route
-        path="/content-shortener/:rewrittenArticleId"
+        path="/content-shortener/:contentShortenerContentId"
         element={<ContentShortenerBotResult />}
       />
 
