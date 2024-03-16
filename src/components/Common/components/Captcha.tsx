@@ -8,7 +8,7 @@ type CaptchaProps = {
 const Captcha = ({ setToken }: CaptchaProps) => {
   return (
     <>
-      <Turnstile siteKey="1x00000000000000000000AA" onSuccess={setToken} />
+      <Turnstile siteKey="0x4AAAAAAAUvOBniCEGNCxDU" onSuccess={setToken} />
     </>
   );
 };
