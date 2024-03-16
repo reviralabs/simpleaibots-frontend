@@ -5,12 +5,14 @@ import axios, { AxiosResponse } from "axios";
 const WEDDING_SPEECH_URL = import.meta.env.VITE_WEDDING_SPEECH_URL + "/text";
 
 const generateWeddingSpeech = async (
-  weddingSpeechInput: WeddingSpeechRequest
+  weddingSpeechInput: WeddingSpeechRequest,
+  headers: Record<string, string | null>
 ): Promise<WeddingSpeechResponse> => {
   try {
     const response: AxiosResponse = await post(
       WEDDING_SPEECH_URL,
-      weddingSpeechInput
+      weddingSpeechInput,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

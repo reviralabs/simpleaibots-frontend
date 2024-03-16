@@ -8,6 +8,7 @@ import Header from "../Common/components/Header.tsx";
 import { generateEmailContent } from "./EmailWriterData.ts";
 import { EmailWriterRequest } from "./types.ts";
 import { Helmet } from "react-helmet";
+import Captcha from "../Common/components/Captcha.tsx";
 
 const EmailWriterBotInput = () => {
   const navigate = useNavigate();
@@ -15,13 +16,22 @@ const EmailWriterBotInput = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const { register, handleSubmit, reset } = useForm<EmailWriterRequest>();
 
   const onFormSubmit = async (data: EmailWriterRequest) => {
     setIsProcessing(true);
 
-    const response = await generateEmailContent(data);
+    if (!captchaToken) {
+      setIsProcessing(false);
+      setIsError(true);
+    }
+    const headers = {
+      "captcha-token": captchaToken,
+    };
+
+    const response = await generateEmailContent(data, headers);
 
     setIsProcessing(false);
     if (response.id) {
@@ -102,7 +112,10 @@ const EmailWriterBotInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Button size="4">Generate</Button>
+            <Captcha setToken={setCaptchaToken} />
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
+            {captchaToken && <Button size="4">Generate</Button>}
           </Flex>
         </form>
       </Flex>

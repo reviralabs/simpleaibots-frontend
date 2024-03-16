@@ -5,12 +5,14 @@ import axios, { AxiosResponse } from "axios";
 const EMAIL_WRITER_URL = import.meta.env.VITE_EMAIL_WRITER_URL + "/text";
 
 const generateEmailContent = async (
-  emailWriterRequest: EmailWriterRequest
+  emailWriterRequest: EmailWriterRequest,
+  headers: Record<string, string | null>
 ): Promise<EmailWriterResponse> => {
   try {
     const response: AxiosResponse = await post(
       EMAIL_WRITER_URL,
-      emailWriterRequest
+      emailWriterRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

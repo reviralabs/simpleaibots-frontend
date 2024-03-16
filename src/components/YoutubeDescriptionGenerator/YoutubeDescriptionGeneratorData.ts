@@ -9,12 +9,14 @@ const YOUTUBE_DESCRIPTION_GENERATOR_URL =
   import.meta.env.VITE_YOUTUBE_DESCRIPTION_GENERATOR_URL + "/text";
 
 const generateYoutubeDescription = async (
-  youtubeDescriptionGeneratorRequest: YoutubeDescriptionGeneratorRequest
+  youtubeDescriptionGeneratorRequest: YoutubeDescriptionGeneratorRequest,
+  headers: Record<string, string | null>
 ): Promise<YoutubeDescriptionGeneratorResponse> => {
   try {
     const response: AxiosResponse = await post(
       YOUTUBE_DESCRIPTION_GENERATOR_URL,
-      youtubeDescriptionGeneratorRequest
+      youtubeDescriptionGeneratorRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

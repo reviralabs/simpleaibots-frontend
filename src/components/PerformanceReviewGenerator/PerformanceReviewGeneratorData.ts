@@ -9,12 +9,14 @@ const PERFORMANCE_REVIEW_GENERATOR_URL =
   import.meta.env.VITE_PERFORMANCE_REVIEW_GENERATOR_URL + "/text";
 
 const generatePerformanceReview = async (
-  performanceReviewGeneratorRequest: PerformanceReviewGeneratorRequest
+  performanceReviewGeneratorRequest: PerformanceReviewGeneratorRequest,
+  headers: Record<string, string | null>
 ): Promise<PerformanceReviewGeneratorResponse> => {
   try {
     const response: AxiosResponse = await post(
       PERFORMANCE_REVIEW_GENERATOR_URL,
-      performanceReviewGeneratorRequest
+      performanceReviewGeneratorRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

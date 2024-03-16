@@ -8,6 +8,7 @@ import Header from "../Common/components/Header.tsx";
 import { generateWeddingSpeech } from "./WeddingSpeechData.ts";
 import { WeddingSpeechFormInput, WeddingSpeechRequest } from "./types.ts";
 import { Helmet } from "react-helmet";
+import Captcha from "../Common/components/Captcha.tsx";
 
 const WeddingSpeechBotInput = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const WeddingSpeechBotInput = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const { register, handleSubmit, watch, reset } =
     useForm<WeddingSpeechFormInput>();
@@ -24,6 +26,14 @@ const WeddingSpeechBotInput = () => {
 
   const onFormSubmit: SubmitHandler<WeddingSpeechFormInput> = async (data) => {
     setIsProcessing(true);
+
+    if (!captchaToken) {
+      setIsProcessing(false);
+      setIsError(true);
+    }
+    const headers = {
+      "captcha-token": captchaToken,
+    };
 
     const weddingSpeechRequest: WeddingSpeechRequest = {
       speakerName: data.speakerName,
@@ -43,7 +53,7 @@ const WeddingSpeechBotInput = () => {
       emotion: data.emotion,
     };
 
-    const response = await generateWeddingSpeech(weddingSpeechRequest);
+    const response = await generateWeddingSpeech(weddingSpeechRequest, headers);
 
     setIsProcessing(false);
     if (response.id) {
@@ -352,7 +362,10 @@ const WeddingSpeechBotInput = () => {
             </Flex>
           )}
           <Flex m="5" direction="column" justify="center">
-            <Button size="4">Generate</Button>
+            <Captcha setToken={setCaptchaToken} />
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
+            {captchaToken && <Button size="4">Generate</Button>}
           </Flex>
         </form>
       </Flex>

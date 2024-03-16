@@ -6,12 +6,14 @@ const CONTENT_SHORTENER_URL =
   import.meta.env.VITE_CONTENT_SHORTENER_URL + "/text";
 
 const generateShortContent = async (
-  contentShortenerInput: ContentShortenerRequest
+  contentShortenerInput: ContentShortenerRequest,
+  headers: Record<string, string | null>
 ): Promise<ContentShortenerResponse> => {
   try {
     const response: AxiosResponse = await post(
       CONTENT_SHORTENER_URL,
-      contentShortenerInput
+      contentShortenerInput,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

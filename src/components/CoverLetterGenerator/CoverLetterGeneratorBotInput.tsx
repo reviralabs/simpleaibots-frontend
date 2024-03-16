@@ -8,6 +8,7 @@ import Header from "../Common/components/Header.tsx";
 import { generateCoverLetter } from "./CoverLetterGeneratorData.ts";
 import { CoverLetterGeneratorRequest } from "./types.ts";
 import { Helmet } from "react-helmet";
+import Captcha from "../Common/components/Captcha.tsx";
 
 type formErrors = {
   [key: string]: string;
@@ -20,6 +21,7 @@ const CoverLetterGeneratorBotInput = () => {
   const [formErrors, setFormErrors] = useState<formErrors>({});
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const { register, handleSubmit, reset } =
     useForm<CoverLetterGeneratorRequest>();
@@ -28,7 +30,15 @@ const CoverLetterGeneratorBotInput = () => {
     setIsProcessing(true);
     setFormErrors({});
 
-    const response = await generateCoverLetter(data);
+    if (!captchaToken) {
+      setIsProcessing(false);
+      setIsError(true);
+    }
+    const headers = {
+      "captcha-token": captchaToken,
+    };
+
+    const response = await generateCoverLetter(data, headers);
 
     setIsProcessing(false);
     if (response.id) {
@@ -149,7 +159,10 @@ const CoverLetterGeneratorBotInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Button size="4">Generate</Button>
+            <Captcha setToken={setCaptchaToken} />
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
+            {captchaToken && <Button size="4">Generate</Button>}
           </Flex>
         </form>
       </Flex>

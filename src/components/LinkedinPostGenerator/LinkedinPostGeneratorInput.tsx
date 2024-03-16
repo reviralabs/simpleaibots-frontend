@@ -8,6 +8,7 @@ import Header from "../Common/components/Header.tsx";
 import { generateLinkedinPost } from "./LinkedinPostGeneratorData.ts";
 import { LinkedinPostGeneratorRequest } from "./types.ts";
 import { Helmet } from "react-helmet";
+import Captcha from "../Common/components/Captcha.tsx";
 
 const LinkedinPostGeneratorInput = () => {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const LinkedinPostGeneratorInput = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const { register, handleSubmit, reset } =
     useForm<LinkedinPostGeneratorRequest>();
@@ -22,7 +24,15 @@ const LinkedinPostGeneratorInput = () => {
   const onFormSubmit = async (data: LinkedinPostGeneratorRequest) => {
     setIsProcessing(true);
 
-    const response = await generateLinkedinPost(data);
+    if (!captchaToken) {
+      setIsProcessing(false);
+      setIsError(true);
+    }
+    const headers = {
+      "captcha-token": captchaToken,
+    };
+
+    const response = await generateLinkedinPost(data, headers);
 
     setIsProcessing(false);
     if (response.id) {
@@ -99,7 +109,10 @@ const LinkedinPostGeneratorInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Button size="4">Generate</Button>
+            <Captcha setToken={setCaptchaToken} />
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
+            {captchaToken && <Button size="4">Generate</Button>}
           </Flex>
         </form>
       </Flex>

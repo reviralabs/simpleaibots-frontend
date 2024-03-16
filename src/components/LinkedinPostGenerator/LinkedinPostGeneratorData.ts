@@ -9,12 +9,14 @@ const LINKEDIN_POST_GENERATOR_URL =
   import.meta.env.VITE_LINKEDIN_POST_GENERATOR_URL + "/text";
 
 const generateLinkedinPost = async (
-  linkedinPostGeneratorRequest: LinkedinPostGeneratorRequest
+  linkedinPostGeneratorRequest: LinkedinPostGeneratorRequest,
+  headers: Record<string, string | null>
 ): Promise<LinkedinPostGeneratorResponse> => {
   try {
     const response: AxiosResponse = await post(
       LINKEDIN_POST_GENERATOR_URL,
-      linkedinPostGeneratorRequest
+      linkedinPostGeneratorRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

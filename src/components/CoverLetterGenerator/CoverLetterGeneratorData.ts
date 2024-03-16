@@ -9,12 +9,14 @@ const COVER_LETTER_GENERATOR_URL =
   import.meta.env.VITE_COVER_LETTER_GENERATOR_URL + "/text";
 
 const generateCoverLetter = async (
-  coverLetterGeneratorRequest: CoverLetterGeneratorRequest
+  coverLetterGeneratorRequest: CoverLetterGeneratorRequest,
+  headers: Record<string, string | null>
 ): Promise<CoverLetterGeneratorResponse> => {
   try {
     const response: AxiosResponse = await post(
       COVER_LETTER_GENERATOR_URL,
-      coverLetterGeneratorRequest
+      coverLetterGeneratorRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

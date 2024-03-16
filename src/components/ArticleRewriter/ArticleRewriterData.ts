@@ -6,12 +6,14 @@ const ARTICLE_REWRITER_URL =
   import.meta.env.VITE_ARTICLE_REWRITER_URL + "/text";
 
 const rewriteArticle = async (
-  articleRewriterRequest: ArticleRewriterRequest
+  articleRewriterRequest: ArticleRewriterRequest,
+  headers: Record<string, string | null>
 ): Promise<ArticleRewriterResponse> => {
   try {
     const response: AxiosResponse = await post(
       ARTICLE_REWRITER_URL,
-      articleRewriterRequest
+      articleRewriterRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

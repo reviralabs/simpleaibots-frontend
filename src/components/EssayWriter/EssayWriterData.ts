@@ -5,12 +5,14 @@ import axios, { AxiosResponse } from "axios";
 const ESSAY_WRITER_URL = import.meta.env.VITE_ESSAY_WRITER_URL + "/text";
 
 const generateEssay = async (
-  essayWriterInput: EssayWriterRequest
+  essayWriterInput: EssayWriterRequest,
+  headers: Record<string, string | null>
 ): Promise<EssayWriterResponse> => {
   try {
     const response: AxiosResponse = await post(
       ESSAY_WRITER_URL,
-      essayWriterInput
+      essayWriterInput,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

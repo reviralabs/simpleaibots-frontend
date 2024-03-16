@@ -8,6 +8,7 @@ import Header from "../Common/components/Header.tsx";
 import { generateShortContent } from "./ContentShortenerData.ts";
 import { ContentShortenerRequest } from "./types.ts";
 import { Helmet } from "react-helmet";
+import Captcha from "../Common/components/Captcha.tsx";
 
 const ContentShortenerBotInput = () => {
   const navigate = useNavigate();
@@ -15,13 +16,21 @@ const ContentShortenerBotInput = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const { register, handleSubmit, reset } = useForm<ContentShortenerRequest>();
 
   const onFormSubmit = async (data: ContentShortenerRequest) => {
     setIsProcessing(true);
 
-    const response = await generateShortContent(data);
+    if (!captchaToken) {
+      setIsProcessing(false);
+      setIsError(true);
+    }
+    const headers = {
+      "captcha-token": captchaToken,
+    };
+    const response = await generateShortContent(data, headers);
 
     setIsProcessing(false);
     if (response.id) {
@@ -106,14 +115,10 @@ const ContentShortenerBotInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <div
-              className="cf-turnstile"
-              data-sitekey="0x4AAAAAAAUvOBniCEGNCxDU"
-              data-theme="light"
-            ></div>
+            <Captcha setToken={setCaptchaToken} />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Button size="4">Shorten</Button>
+            {captchaToken && <Button size="4">Shorten</Button>}
           </Flex>
         </form>
       </Flex>

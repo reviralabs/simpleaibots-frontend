@@ -5,12 +5,14 @@ import axios, { AxiosResponse } from "axios";
 const GRAMMAR_FIXER_URL = import.meta.env.VITE_GRAMMAR_FIXER_URL + "/text";
 
 const generateGrammarFixerContent = async (
-  grammarFixerRequest: GrammarFixerRequest
+  grammarFixerRequest: GrammarFixerRequest,
+  headers: Record<string, string | null>
 ): Promise<GrammarFixerResponse> => {
   try {
     const response: AxiosResponse = await post(
       GRAMMAR_FIXER_URL,
-      grammarFixerRequest
+      grammarFixerRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {

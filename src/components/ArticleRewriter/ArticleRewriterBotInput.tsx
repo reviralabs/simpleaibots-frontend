@@ -8,6 +8,7 @@ import Header from "../Common/components/Header.tsx";
 import { rewriteArticle } from "./ArticleRewriterData.ts";
 import { ArticleRewriterRequest } from "./types.ts";
 import { Helmet } from "react-helmet";
+import Captcha from "../Common/components/Captcha.tsx";
 
 const ArticleRewriterBotInput = () => {
   const navigate = useNavigate();
@@ -15,13 +16,22 @@ const ArticleRewriterBotInput = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("Something went wrong");
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   const { register, handleSubmit, reset } = useForm<ArticleRewriterRequest>();
 
   const onFormSubmit = async (data: ArticleRewriterRequest) => {
     setIsProcessing(true);
 
-    const response = await rewriteArticle(data);
+    if (!captchaToken) {
+      setIsProcessing(false);
+      setIsError(true);
+    }
+    const headers = {
+      "captcha-token": captchaToken,
+    };
+
+    const response = await rewriteArticle(data, headers);
 
     setIsProcessing(false);
     if (response.id) {
@@ -103,7 +113,10 @@ const ArticleRewriterBotInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
-            <Button size="4">Generate</Button>
+            <Captcha setToken={setCaptchaToken} />
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
+            {captchaToken && <Button size="4">Generate</Button>}
           </Flex>
         </form>
       </Flex>

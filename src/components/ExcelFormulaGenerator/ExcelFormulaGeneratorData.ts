@@ -9,12 +9,14 @@ const EXCEL_FORMULA_GENERATOR_URL =
   import.meta.env.VITE_EXCEL_FORMULA_GENERATOR_URL + "/text";
 
 const excelFormulaGeneratorContent = async (
-  excelFormulaGeneratorRequest: ExcelFormulaGeneratorRequest
+  excelFormulaGeneratorRequest: ExcelFormulaGeneratorRequest,
+  headers: Record<string, string | null>
 ): Promise<ExcelFormulaGeneratorResponse> => {
   try {
     const response: AxiosResponse = await post(
       EXCEL_FORMULA_GENERATOR_URL,
-      excelFormulaGeneratorRequest
+      excelFormulaGeneratorRequest,
+      headers
     );
     if (response && response.status && response.status == 200) {
       return {
