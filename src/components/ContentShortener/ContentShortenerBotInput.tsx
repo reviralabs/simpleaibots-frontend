@@ -106,6 +106,13 @@ const ContentShortenerBotInput = () => {
             />
           </Flex>
           <Flex m="5" direction="column" justify="center">
+            <div
+              className="cf-turnstile"
+              data-sitekey="0x4AAAAAAAUvOBniCEGNCxDU"
+              data-theme="light"
+            ></div>
+          </Flex>
+          <Flex m="5" direction="column" justify="center">
             <Button size="4">Shorten</Button>
           </Flex>
         </form>
