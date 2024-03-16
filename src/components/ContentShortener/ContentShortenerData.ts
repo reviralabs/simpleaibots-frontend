@@ -2,8 +2,7 @@ import { post, get } from "../../utils/httputils.ts";
 import { ContentShortenerRequest, ContentShortenerResponse } from "./types.ts";
 import axios, { AxiosResponse } from "axios";
 
-const CONTENT_SHORTENER_URL =
-  import.meta.env.VITE_CONTENT_SHORTENER_URL + "/text";
+const CONTENT_SHORTENER_URL = "/content-shortener/worker/text";
 
 const generateShortContent = async (
   contentShortenerInput: ContentShortenerRequest,
