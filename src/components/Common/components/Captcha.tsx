@@ -6,9 +6,11 @@ type CaptchaProps = {
 };
 
 const Captcha = ({ setToken }: CaptchaProps) => {
+  const siteKey = import.meta.env.VITE_TURNSTILE_SITE_KEY;
+
   return (
     <>
-      <Turnstile siteKey="0x4AAAAAAAUvOBniCEGNCxDU" onSuccess={setToken} />
+      <Turnstile siteKey={siteKey} onSuccess={setToken} />
     </>
   );
 };
