@@ -1,6 +1,6 @@
-import { Flex, Text, Box, Strong } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import { useNavigate } from "react-router-dom";
-import cutebot from "../../../images/cutebot.png";
+import logoBlack from "../../../images/logo-color.png";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -8,25 +8,20 @@ const Header = () => {
   return (
     <Flex justify="center">
       <Flex
-        m="3"
+        m="5"
         align="center"
         style={{ cursor: "pointer" }}
         onClick={() => navigate("/")}
       >
         <img
-          src={cutebot}
+          src={logoBlack}
           alt="SimpleAIBots"
           style={{
             objectFit: "cover",
-            width: "3vw",
-            height: "6vh",
+            width: "20vw",
+            height: "8vh",
           }}
         />
-        <Box m="3">
-          <Text size="4">
-            <Strong>Simple AI Bots</Strong>
-          </Text>
-        </Box>
       </Flex>
     </Flex>
   );

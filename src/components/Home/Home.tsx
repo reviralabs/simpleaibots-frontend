@@ -18,12 +18,7 @@ const Home = () => {
       </Helmet>
       <Box className="polka">
         <Header />
-        <Flex
-          p="5"
-          className="polka"
-          style={{ width: "100vw" }}
-          justify="center"
-        >
+        <Flex p="5" style={{ width: "100vw" }} justify="center">
           <Hero />
         </Flex>
       </Box>
