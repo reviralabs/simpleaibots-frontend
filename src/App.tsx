@@ -22,6 +22,8 @@ import YoutubeDescriptionGeneratorInput from "./components/YoutubeDescriptionGen
 import YoutubeDescriptionGeneratorResult from "./components/YoutubeDescriptionGenerator/YoutubeDescriptionGeneratorResult";
 import PerformanceReviewGeneratorInput from "./components/PerformanceReviewGenerator/PerformanceReviewGeneratorInput";
 import PerformanceReviewGeneratorResult from "./components/PerformanceReviewGenerator/PerformanceReviewGeneratorResult";
+import RealEstateDescriptionGeneratorInput from "./components/RealEstateDescriptionGenerator/RealEstateDescriptionBotInput";
+import RealEstateDescriptionGeneratorResult from "./components/RealEstateDescriptionGenerator/RealEstateDescriptionBotResult";
 import Blog from "./components/Blog/Blog";
 
 const App = () => {
@@ -106,6 +108,15 @@ const App = () => {
       <Route
         path="/performance-review-generator/:performanceReviewId"
         element={<PerformanceReviewGeneratorResult />}
+      />
+
+      <Route
+        path="/realestate-description-generator"
+        element={<RealEstateDescriptionGeneratorInput />}
+      />
+      <Route
+        path="/realestate-description-generator/:realEstateDescriptionId"
+        element={<RealEstateDescriptionGeneratorResult />}
       />
 
       <Route path="/blogs/:blogName" element={<Blog />} />
