@@ -1,4 +1,4 @@
-import { Flex, Box } from "@radix-ui/themes";
+import { Flex } from "@radix-ui/themes";
 import { useNavigate } from "react-router-dom";
 import logoBlack from "../../../images/logo-color.png";
 
