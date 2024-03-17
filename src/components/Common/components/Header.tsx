@@ -1,4 +1,4 @@
-import { Flex } from "@radix-ui/themes";
+import { Flex, Box } from "@radix-ui/themes";
 import { useNavigate } from "react-router-dom";
 import logoBlack from "../../../images/logo-color.png";
 
@@ -6,20 +6,21 @@ const Header = () => {
   const navigate = useNavigate();
 
   return (
-    <Flex justify="center">
+    <Flex justify="center" align="center">
       <Flex
-        m="5"
+        m="3"
         align="center"
+        justify="center"
         style={{ cursor: "pointer" }}
         onClick={() => navigate("/")}
       >
         <img
           src={logoBlack}
           alt="SimpleAIBots"
+          height="auto"
           style={{
-            objectFit: "cover",
-            width: "20vw",
-            height: "8vh",
+            width: "20%",
+            height: "auto",
           }}
         />
       </Flex>
