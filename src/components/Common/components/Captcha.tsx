@@ -10,7 +10,11 @@ const Captcha = ({ setToken }: CaptchaProps) => {
 
   return (
     <>
-      <Turnstile siteKey={siteKey} onSuccess={setToken} />
+      <Turnstile
+        siteKey={siteKey}
+        onSuccess={setToken}
+        style={{ height: "1vh" }}
+      />
     </>
   );
 };

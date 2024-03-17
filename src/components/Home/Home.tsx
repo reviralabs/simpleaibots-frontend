@@ -22,7 +22,7 @@ const Home = () => {
           <Hero />
         </Flex>
       </Box>
-      <Flex mt="5" style={{ width: "100vw" }} justify="center">
+      <Flex mt="5" ml="5" mr="5" justify="center">
         <Tiles />
       </Flex>
     </>
