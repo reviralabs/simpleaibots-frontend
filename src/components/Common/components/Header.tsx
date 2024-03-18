@@ -14,15 +14,7 @@ const Header = () => {
         style={{ cursor: "pointer" }}
         onClick={() => navigate("/")}
       >
-        <img
-          src={logoBlack}
-          alt="SimpleAIBots"
-          height="auto"
-          style={{
-            width: "20%",
-            height: "auto",
-          }}
-        />
+        <img src={logoBlack} alt="SimpleAIBots" className="logo" />
       </Flex>
     </Flex>
   );
