@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Flex, Text, Button, Box } from "@radix-ui/themes";
+import { Flex, Text, Button, Box, Heading } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
@@ -62,9 +62,14 @@ const YoutubeDescriptionGeneratorInput = () => {
       <Box className="polka">
         <Header />
         <Flex p="1" style={{ width: "100vw" }} justify="center">
-          <Text size="7" align="center">
+          <Heading as="h1" size="8">
             Free AI Youtube Description Generator
-          </Text>
+          </Heading>
+        </Flex>
+        <Flex p="1" style={{ width: "100vw" }} justify="center">
+          <Heading as="h3" size="2">
+            Write seo friendly youtube video descriptions to boost your views
+          </Heading>
         </Flex>
       </Box>
       <Flex

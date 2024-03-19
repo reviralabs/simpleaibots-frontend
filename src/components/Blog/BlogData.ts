@@ -11,7 +11,10 @@ const getBlog = async (id: string): Promise<BlogResponse> => {
     if (response && response.status && response.status == 200) {
       return {
         id: response.data.id,
+        title: response.data.title,
         content: response.data.content,
+        toolLink: response.data.toolLink,
+        toolLinktext: response.data.toolLinkText,
         statusCode: response.status,
         statusText: response.statusText,
       };
@@ -23,6 +26,9 @@ const getBlog = async (id: string): Promise<BlogResponse> => {
       return {
         id: "",
         content: "",
+        title: "",
+        toolLink: "",
+        toolLinktext: "",
         statusCode: error.response.status,
         statusText: error.response.statusText,
       };
@@ -35,7 +41,10 @@ const getBlog = async (id: string): Promise<BlogResponse> => {
 const genericErrorRepsonse = () => {
   return {
     id: "",
+    title: "",
     content: "",
+    toolLink: "",
+    toolLinktext: "",
     statusCode: 500,
     statusText: "generic error",
   };
