@@ -121,6 +121,7 @@ const App = () => {
 
       <Route path="/blogs/:blogName" element={<Blog />} />
     </Routes>
+    // New comment
   );
 };
 
